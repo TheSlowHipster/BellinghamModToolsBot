@@ -42,6 +42,10 @@ client.on("guildDelete", guild=> {
     console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
     client.user.setActivity(`Serving on ${client.guilds.size} servers`);
 });
+
+client.on("error", (e) => console.error(e));
+client.on("warn", (e) => console.warn(e));
+client.on("debug", (e) => console.info(e));
    
 client.on("message", (message) => {
 
