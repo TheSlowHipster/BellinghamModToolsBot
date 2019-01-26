@@ -51,22 +51,26 @@ if(!message.content.startsWith(prefix) || message.author.bot || message.content.
 if((message.member.highestRole.name === "Admins") || (message.member.highestRole.name === "Moderators") ){
 
     if(message.content.startsWith(prefix+"logout")){
+        console.log("Going Offline");
         message.delete();
         client.destroy();
     }
 
     if(message.content.startsWith(prefix+"h event")){
+        console.log("responding to 'h event'")
         message.author.send(`Usage: !event @creator;google calendar link;the first line;the `+ 
             `description;who is welcome;the date;the location;where to RSVP\n\nCreates a rich `+ 
             `embed to display an event nicely`);
     }
 
     if(message.content.startsWith(prefix+"h remind")){
+        console.log("responding to 'h remind'")
         message.author.send(`Usage: !remind @username\n\nSends a PM to the user specified, `+
         `reminding them to be kind.`);
     }
 
     if(message.content.startsWith(prefix+"remind")){
+        console.log("Attempting to remind user");
         let img = kindimages[Math.floor(Math.random()*kindimages.length)];
         message.mentions.members.first().send({embed:{
             color: 15337741,
@@ -85,12 +89,14 @@ if((message.member.highestRole.name === "Admins") || (message.member.highestRole
             }
         }});
         message.delete();
+        console.log("Reminded user");
 
     }
 
     
 
     if (message.content.startsWith(prefix+"event")){
+        console.log("Creating Event Card");
         const args = message.content.slice(prefix.length).trim().split(";");
         let host = message.mentions.members.first();
         let [calendar,firstline, description, opento, cost, date, location, rsvp] = args;
@@ -137,6 +143,7 @@ if((message.member.highestRole.name === "Admins") || (message.member.highestRole
             }
         }});
         message.delete();
+        console.log("Event Card created");
 
 
     }
@@ -144,23 +151,29 @@ if((message.member.highestRole.name === "Admins") || (message.member.highestRole
 }
 
 if(message.content.startsWith(prefix+"help")&&message.member.roles.some(r=>["Moderators","Admins"].includes(r.name))){
+    console.log("Sending Moderator help commands");
     message.author.send(`Usage: !h events, !h remind, !h complain`);
 }
 else if(message.content.startsWith(prefix+"help")){
+    console.log("Sending general help commands");
     message.author.send(`Usage: !h complain`);
 }
 
 if(message.content.startsWith(prefix+"h complain")){
+    console.log("Responding to 'h complain'");
     message.author.send(`Usage: @user reason\n\nSend an official complaint for the `+
     `moderation team.\nNo user required for general complaints.`)
 }
 
 if(message.content.startsWith(prefix+"pickup")){
+    console.log("Picking up line");
     let line = pickuplines[Math.floor(Math.random()*pickuplines.length)];
     message.channel.send(`${line}`);
+    console.log("Sent pickup line");
 }
 
 if(message.content.startsWith(prefix+"complain")){
+    console.log("Opening complaint");
     //@user reason
     let plaintiff = message.author;
     let defence = message.mentions.members.first();
@@ -195,6 +208,7 @@ if(message.content.startsWith(prefix+"complain")){
             }
     }});
     message.delete();
+    console.log("Sent complaint");
 
 }
 
