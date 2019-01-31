@@ -112,7 +112,7 @@ if((message.member.highestRole.name === "Admins") || (message.member.highestRole
                 icon_url: client.user.avatarURL
             },
             title: `THERE IS A NEW EVENT`,
-            url: calendar,
+            //url: calendar,
             description: `${host} ${firstline}`,
             fields: [
                 {
